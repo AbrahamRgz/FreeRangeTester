@@ -1,0 +1,37 @@
+plugins {
+    id 'groovy'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.apache.groovy:groovy:5.0.0'
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    // Source: https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
+    implementation 'org.seleniumhq.selenium:selenium-java:4.39.0'
+
+    // Source: https://mvnrepository.com/artifact/io.cucumber/cucumber-java
+    implementation 'io.cucumber:cucumber-java:7.33.0'
+    // Source: https://mvnrepository.com/artifact/io.cucumber/cucumber-junit
+    testImplementation 'io.cucumber:cucumber-junit:7.33.0'
+    // Source: https://mvnrepository.com/artifact/io.cucumber/cucumber-core
+    implementation 'io.cucumber:cucumber-core:7.33.0'
+
+    // Source: https://mvnrepository.com/artifact/org.testng/testng
+    testImplementation 'org.testng:testng:7.11.0'
+
+    // Source: https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager
+    implementation 'io.github.bonigarcia:webdrivermanager:6.3.3'
+}
+
+tasks.named('test') {
+    systemProperty "cucumber.options", System.getProperty("cucumber.options")
+    systemProperties System.getProperties();
+}
